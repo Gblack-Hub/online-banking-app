@@ -3,8 +3,7 @@
 
     require("mycon.php");
     $query_get = mysqli_query($con, "SELECT * FROM user_tb where user_id = $user_id");
-    $query_get_account = mysqli_query($con,"SELECT acct_number, acct_type FROM account_tb JOIN account_type_tb USING(acct_type_id) 
-    											WHERE user_id=$user_id");
+    $query_get_account = mysqli_query($con,"SELECT acct_number, acct_type FROM account_tb JOIN account_type_tb USING(acct_type_id) WHERE user_id=$user_id");
 
     $r = mysqli_fetch_assoc($query_get);
 if(isset($_POST['update'])){
@@ -63,46 +62,22 @@ else if(isset($_POST['deleteAcct'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Profile Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap4/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../assets/fontawesome/css/css/fontawesome-all.min.css">
+   <?php
+		include 'links.php';
+	?>
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-			<a class="navbar-brand" href="#">Gbank</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="dashboard1.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="myProfile.php">My Profile</a>
-					</li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="accountStatement.php">Account Statement</a>
-	                </li>
-					<li class="nav-item">
-						<a class="nav-link" href="logout.php">Sign Out</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Sign Out</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="logout.php">Sign Out</a>
-							<a class="dropdown-item" href="index.html">Sign Up</a>
-							<!-- <a class="dropdown-item">Sublink-3</a> -->
-						</div>
-					</li>
-				</ul>
-			</div>
-	    </nav>
-	    <div class="display-4 bg-secondary">
-			<div class="text-center text-white display-4">MY PROFILE</div>
-		</div>
-	</header>
+    	<?php
+          include "headers.php";
+      ?>
+   </header>
 	<main class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<div class="text-center display-4">MY PROFILE</div>
+			</div>
+		</div>
 		<hr />
 		<div class="row">
 			<!-- <div class="col-md-3"></div> -->

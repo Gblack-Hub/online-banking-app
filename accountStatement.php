@@ -1,7 +1,7 @@
 <?php session_start();
 	require('mycon.php');
 	$user_id = $_SESSION['user_id'];
-    $acct_no1 = $_SESSION['acct_no1'];
+   // $acct_no1 = $_SESSION['acct_no1'];
 
     if(isset($_SESSION['acct_no1'])){
 		// echo $ans['acct_number'];
@@ -9,54 +9,30 @@
     	$result_get_acct = mysqli_num_rows($query_get_acct);
 
     	#trying to get all current user's account and loop through it in the select area
-    	
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Account Statement</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../assets/bootstrap4/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../assets/fontawesome/css/css/fontawesome-all.min.css">
+   <title>Account Statement</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php
+	   include 'links.php';
+	?>
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-			<a class="navbar-brand" href="#">Gbank</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-			<div class="collapse navbar-collapse" id="collapsibleNavbar">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="dashboard1.php">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="myProfile.php">My Profile</a>
-					</li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="accountStatement.php">Account Statement</a>
-	                </li>
-					<li class="nav-item">
-						<a class="nav-link" href="logout.php">Sign Out</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Sign Out</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="logout.php">Sign Out</a>
-							<a class="dropdown-item" href="index.html">Sign Up</a>
-							<!-- <a class="dropdown-item">Sublink-3</a> -->
-						</div>
-					</li>
-				</ul>
-			</div>
-	    </nav>
-	    <div class="display-4 bg-secondary">
-			<div class="text-center text-white display-4">ACCOUNT STATEMENT</div>
-		</div>
+		<?php
+			include "headers.php";
+		?>
 	</header>
 	<main class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+				<div class="text-center text-white display-4">ACCOUNT STATEMENT</div>
+			</div>
+		</div>
 		<div class="text-center h5 mt-2"></div>
 		<div class="row">
 			<div class="col-md-3"></div>
@@ -71,7 +47,7 @@
 						}
 						echo "</select>";
 			    	}
-				
+
 					echo "<button type='submit' name='acct_selected' id='acct_selected' class='btn btn-block'>Submit</button>";
 				?>
 				</form>
@@ -109,7 +85,12 @@
 							";
 						}
 						} else {
-					    	echo "ERROR: ".mysqli_error($con);
+							include 'links.php';
+							include "headers.php";
+					    	echo "<div class='alert alert-warning text-center
+					    	'>
+										<span>Sorry, You have no account with our bank, click <a href='dashboard1.php'>here</a> to open an account</span>
+									</div>".mysqli_error($con);
 					    }
 					?>
 				</tbody>
